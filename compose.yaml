@@ -1,0 +1,15 @@
+version: "3"
+services:
+  todolist-db:
+    image: mariadb:11.1.2
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: todolist
+      TZ: "Europe/Zurich"
+    volumes:
+      - datadir:/var/lib/mysql
+volumes:
+  datadir:
