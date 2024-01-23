@@ -1,6 +1,7 @@
 package com.example.todolist.service
 
 import com.example.todolist.entity.Item
+import com.example.todolist.error.BadArgumentsException
 import com.example.todolist.repository.TodoListRepository
 import org.springframework.stereotype.Service
 
@@ -10,7 +11,7 @@ class TodoListService(
 ) {
     fun createItem(item: Item) {
         // checks if item is valid before creating new query in db
-        if (item.isNotValid()) throw IllegalArgumentException("Invalid Item")
+        if (item.isNotValid()) throw BadArgumentsException("Invalid TodoItem")
         todoListRepository.createItem(item)
     }
 
