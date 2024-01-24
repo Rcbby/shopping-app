@@ -10,7 +10,7 @@ class TodoListService(
     private val todoListRepository: TodoListRepository
 ) {
     fun createItem(item: Item) {
-        // checks if item is valid before creating new query in db
+        //checks if item is valid before creating new query in db
         if (item.isNotValid()) throw BadArgumentsException("Invalid TodoItem")
         todoListRepository.createItem(item)
     }
