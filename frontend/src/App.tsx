@@ -1,23 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-const randomNumber = Math.floor(Math.random() * 10 + 1)
+export default function App() {
+    const [count, setCount] = useState(0);
 
-function App() {
+    function setClick() {
+        setCount(count + 1)
+    }
+
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                <p className="gross">
-                    React
-                </p> <br/>
-                <p>
-                    {randomNumber}
-                </p>
-            </header>
+        <div className="App App-header">
+            <img src={logo} className="App-logo" alt="logo"/>
+            <button className="btn" onClick={setClick}>Clicked {count} times</button>
         </div>
     );
 }
-
-export default App;
