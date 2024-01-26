@@ -1,20 +1,11 @@
 .App {
   text-align: center;
-}
-
-.gross {
-  font-size: 200px;
-  margin: 1px;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  color: white;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 100000ms linear;
+    animation: App-logo-spin infinite 1000ms alternate-reverse;
   }
 }
 
@@ -39,8 +30,10 @@
   }
 }
 
-.btn {
-  font-size: 40px;
-  background-color: #61dafb;
-  color: white;
+.deleteBtn {
+  cursor: pointer;
+  border: 3px solid red;
+  background-color: transparent;
+  color: red;
+  font-size: 30px;
 }

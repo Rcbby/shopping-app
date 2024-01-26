@@ -5,6 +5,7 @@ import com.example.todolist.repository.TodoListRepository
 import com.example.todolist.service.TodoListService
 import org.springframework.web.bind.annotation.*
 
+@CrossOrigin("http://localhost:3000")
 @RestController
 class TodoListController(
     private val todoListRepository: TodoListRepository,
