@@ -1,6 +1,8 @@
-.App {
-  text-align: center;
+.center {
+  width: 50%;
+  margin: auto;
   color: white;
+  font-family: Arial, serif;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -32,8 +34,21 @@
 
 .deleteBtn {
   cursor: pointer;
-  border: 3px solid red;
+  border: 2px solid red;
   background-color: transparent;
   color: red;
-  font-size: 30px;
+  font-size: 25px;
+}
+
+label, input {
+  text-align: left;
+  padding: 8px;
+  font-family: "Comic Sans MS", cursive;
+;
+  font-size: 35px;
+}
+
+input[type=checkbox]:checked + label {
+  text-decoration: line-through;
+  color: #8d8d8d;
 }

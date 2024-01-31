@@ -1,6 +1,6 @@
 package com.example.todolist.integration
 
-import com.example.todolist.entity.Item
+import com.example.todolist.entity.TodoItem
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -38,7 +38,7 @@ class TodoListControllerTest(
 
     @Test
     fun `should create a new todoItem in the db`() {
-        val item = Item("", "take out the trash")
+        val item = TodoItem("", "take out the trash",false)
         mockMvc.post("/todolist") {
             content = mapper.writeValueAsString(item)
             contentType = MediaType.APPLICATION_JSON

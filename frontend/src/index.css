@@ -1,22 +1,15 @@
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.header {
+  font-size: 80px;
+  color: white;
+  font-family: "Inter Semi Bold", sans-serif;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
 }
 
-.header {
-  font-size: 70px;
-  background-color: #61dafb;
-  color: white;
-  text-align: center;
+.div {
+  width: 50%;
+  margin: auto;
 }
-

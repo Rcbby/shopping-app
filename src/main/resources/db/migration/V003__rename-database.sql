@@ -1,0 +1,1 @@
+RENAME TABLE todolist TO todo;

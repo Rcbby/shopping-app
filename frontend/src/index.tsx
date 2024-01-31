@@ -1,14 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import reportWebVitals from './reportWebVitals';
-import TodoItem from "./App";
+import TodoItem from "./TodoListTable";
+import './index.css'
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
     <>
+        <div className="center">
+        <h1 className="header">Todo List</h1>
+        </div>
         <TodoItem />
     </>
 );

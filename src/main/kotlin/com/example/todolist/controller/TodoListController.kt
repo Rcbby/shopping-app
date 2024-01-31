@@ -1,25 +1,26 @@
 package com.example.todolist.controller
 
-import com.example.todolist.entity.Item
+import com.example.todolist.entity.TodoItem
+import com.example.todolist.entity.UploadItem
+import com.example.todolist.error.BadArgumentsException
 import com.example.todolist.repository.TodoListRepository
-import com.example.todolist.service.TodoListService
 import org.springframework.web.bind.annotation.*
 
 @CrossOrigin("http://localhost:3000")
 @RestController
 class TodoListController(
     private val todoListRepository: TodoListRepository,
-    private val todoListService: TodoListService
 ) {
 
     @GetMapping(path = ["/todolist"])
-    fun getTodoList(): List<Item> {
+    fun getTodoList(): List<TodoItem> {
         return todoListRepository.getItem()
     }
 
     @PostMapping(path = ["/todolist"])
-    fun createItem(@RequestBody item: Item) {
-        todoListService.createItem(item)
+    fun createItem(@RequestBody uploadItem: UploadItem) {
+        if (uploadItem.isNotValid()) throw BadArgumentsException("Invalid TodoItem")
+        todoListRepository.createItem( TodoItem(item = uploadItem.item))
     }
 
     @DeleteMapping(path = ["/todolist/{uuid}"])

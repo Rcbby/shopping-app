@@ -47,12 +47,7 @@
             <artifactId>kotlin-stdlib</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-docker-compose</artifactId>
@@ -147,10 +142,18 @@
                             <name>org.jooq.meta.mariadb.MariaDBDatabase</name>
                             <inputSchema>todolist</inputSchema>
                             <includes>.*</includes>
+                            <excludes>
+                                flyway_.*
+                            </excludes>
+                            <forcedTypes>
+                                <forcedType>
+                                    <name>BOOLEAN</name>
+                                    <includeTypes>(?i:TINYINT\(1\))</includeTypes>
+                                </forcedType>
+                            </forcedTypes>
                         </database>
 
 
-                        <generate/>
 
                         <target>
 
