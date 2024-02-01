@@ -1,10 +1,10 @@
 package com.example.todolist.repository
 
 import com.example.todolist.entity.TodoItem
+import com.example.todolist.error.BadArgumentsException
 import com.example.todolist.tables.Todo.TODO
 import org.jooq.DSLContext
 import org.springframework.stereotype.Repository
-import java.util.*
 
 @Repository
 class TodoListRepository(
@@ -29,15 +29,25 @@ class TodoListRepository(
             .execute()
     }
 
-    fun deleteItem(uuid: String) {
+    fun deleteItem(uuid: String): TodoItem {
         //deletes record where uuid eq uuid
-        jooq
+        return jooq
             .delete(TODO)
             .where(TODO.UUID.eq(uuid))
-            .execute()
+            .returning()
+            .fetchOneInto(TodoItem::class.java) ?: throw BadArgumentsException("Invalid uuid!")
+    }
+
+    fun putIsDone(uuid: String, isDone: Boolean): TodoItem {
+        return jooq
+            .update(TODO)
+            .set(TODO.IS_DONE, isDone)
+            .where(TODO.UUID.eq(uuid))
+            .returning()
+            .fetchOneInto(TodoItem::class.java) ?: throw BadArgumentsException("Invalid Todo!")
     }
 }
 
-data class InternalTodoItem(val uuid: String, val item: String, val isDone: Short) {
-}
+data class InternalTodoItem(val uuid: String, val item: String, val isDone: Short)
+
 fun TodoItem.convert(): InternalTodoItem = InternalTodoItem(this.uuid, this.item, if (this.isDone) 1 else 0)
