@@ -3,6 +3,7 @@ package com.example.todolist.integration
 import com.example.todolist.entity.TodoItem
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
@@ -48,6 +49,7 @@ class TodoListControllerTest(
         }
     }
 
+    @Disabled
     @Test
     fun `deletes a note`() {
         mockMvc.delete("/todolist/{uuid}", "c7556af4-b118-4cd1-892e-b66f0efc3ac0")

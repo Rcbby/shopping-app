@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(
 root.render(
     <>
         <div className="center">
-        <h1 className="header">Todo List</h1>
+        <h1 className="header">Einkaufsliste</h1>
         </div>
         <TodoItem/>
     </>

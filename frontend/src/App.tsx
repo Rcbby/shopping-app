@@ -19,11 +19,12 @@ const App = () => {
 
     if (initStartup) {
     }
+
     function handleCheck(isDone: boolean, uuid: String) {
         fetch(`http://localhost:8080/todolist/${!isDone}/${uuid}`, {method: "PUT"})
             .then(response => response.json())
             .then(data => setItems(items.map(item =>
-                item.uuid == data.uuid ? {...item, isDone: data.isDone} : item
+                    item.uuid == data.uuid ? {...item, isDone: data.isDone} : item
                 ))
             )
             .catch(error => console.error(`there was an error: ${error}`))
@@ -32,7 +33,7 @@ const App = () => {
     function deleteItem(uuid: String) {
         fetch(`http://localhost:8080/todolist/${uuid}`, {method: 'DELETE'})
             .then(res => res.json())
-            .then(data => setItems(items.filter(item => item.uuid !== data.uuid )))
+            .then(data => setItems(items.filter(item => item.uuid !== data.uuid)))
             .catch(error => console.error(`there was an error: ${error}`))
     }
 
@@ -42,14 +43,14 @@ const App = () => {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({item})
         }
-
-        fetch('http://localhost:8080/todolist', requestOptions)
-            .then(response => response.json())
-            .then(data => setItems(() => [...items, data]))
-            .catch(error => console.error(`There was an unexpected error: ${error}`))
-        setItem("")
+        if (item != "") {
+            fetch('http://localhost:8080/todolist', requestOptions)
+                .then(response => response.json())
+                .then(data => setItems(() => [...items, data]))
+                .catch(error => console.error(`There was an unexpected error: ${error}`))
+            setItem("")
+        }
     }
-
 
     return <>
         <div className="center">
@@ -59,16 +60,21 @@ const App = () => {
                         <input className="input" onClick={() => handleCheck(item.isDone, item.uuid)} type="checkbox"
                                id={item.uuid.toString()} checked={item.isDone}/>
                         <label className="label" htmlFor={item.uuid.toString()}>{item.item}</label>
-                        <input onClick={()=>deleteItem(item.uuid)} type="button" className="deleteBtn" value="Delete"></input>
+                        <input onClick={() => deleteItem(item.uuid)} type="button" className="deleteBtn"
+                               value="Löschen"></input>
                         <hr></hr>
                     </div>
                 )
             })}
-            <h1 className="headline">New item</h1>
+            <h1 className="headline">Neuer Artikel</h1>
             <input onKeyDown={event => {
-                if (event.key == 'Enter') {createItem()}
-            }} onChange={event => {setItem(event.target.value)}} id="demo" className="textbar" type="text" placeholder="Enter new item" value={item}/>
-            <button onClick={createItem} className="btn">Create</button>
+                if (event.key == 'Enter') {
+                    createItem()
+                }
+            }} onChange={event => {
+                setItem(event.target.value)
+            }} id="demo" className="textbar" type="text" placeholder="Neuer Artikel eingeben" value={item}/>
+            <button onClick={createItem} className="btn">Hinzufügen</button>
         </div>
     </>
 }
