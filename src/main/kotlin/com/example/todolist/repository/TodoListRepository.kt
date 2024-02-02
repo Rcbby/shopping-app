@@ -18,15 +18,15 @@ class TodoListRepository(
             .fetchInto(TodoItem::class.java)
     }
 
-    fun createItem(item: TodoItem) {
-
+    fun createItem(item: TodoItem): TodoItem {
         //creates a new record in the db
-        jooq
+       return jooq
             .insertInto(TODO)
             .set(TODO.UUID, item.uuid)
             .set(TODO.ITEM, item.item)
             .set(TODO.IS_DONE, item.isDone)
-            .execute()
+            .returning()
+           .fetchOneInto(TodoItem::class.java) ?: throw BadArgumentsException("Invalid note!")
     }
 
     fun deleteItem(uuid: String): TodoItem {

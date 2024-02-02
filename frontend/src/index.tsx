@@ -12,7 +12,7 @@ root.render(
         <div className="center">
         <h1 className="header">Todo List</h1>
         </div>
-        <TodoItem />
+        <TodoItem/>
     </>
 );
 

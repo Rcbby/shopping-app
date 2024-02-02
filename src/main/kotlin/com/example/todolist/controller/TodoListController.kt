@@ -19,7 +19,7 @@ class TodoListController(
     }
 
     @PostMapping(path = ["/todolist"])
-    fun createItem(@RequestBody uploadItem: UploadItem): ResponseEntity<Unit> {
+    fun createItem(@RequestBody uploadItem: UploadItem): ResponseEntity<TodoItem> {
         if (uploadItem.isNotValid()) throw BadArgumentsException("Invalid TodoItem")
         return ResponseEntity.ok(todoListRepository.createItem(TodoItem(item = uploadItem.item)))
     }
