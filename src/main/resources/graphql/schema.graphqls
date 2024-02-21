@@ -1,0 +1,15 @@
+type TodoItem {
+    uuid: String,
+    item: String!,
+    isDone: Boolean
+}
+
+type Query {
+    getItem: [TodoItem]
+}
+
+type Mutation {
+    createItem(item: String): TodoItem
+    deleteItem(uuid: String): TodoItem
+    putIsDone(uuid: String, isDone: Boolean): TodoItem
+}

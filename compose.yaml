@@ -11,25 +11,25 @@ services:
       TZ: "Europe/Zurich"
     volumes:
       - datadir:/var/lib/mysql
-
-  todolist-frontend:
-    build: ./frontend
-    environment:
-      PORT: 3000
-    ports:
-      - "3000:3000"
-    stdin_open: true
-    tty: true
-
-  todolist-backend:
-    image: todolist-be
-    depends_on:
-      - todolist-db
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mariadb://todolist-db:3306/todolist
-    ports:
-      - "8080:8080"
-
 volumes:
   datadir:
 
+#  todolist-frontend:
+#    build: ./frontend
+#    environment:
+#      PORT: 3000
+#    ports:
+#      - "3000:3000"
+#    stdin_open: true
+#    tty: true
+#
+#  todolist-backend:
+#    image: todolist-be
+#    depends_on:
+#      - todolist-db
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mariadb://todolist-db:3306/todolist
+#    ports:
+#      - "8080:8080"
+#
+#

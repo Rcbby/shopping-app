@@ -14,7 +14,7 @@ class TodoListController(
 ) {
 
     @GetMapping(path = ["/todolist"])
-    fun getTodoList(): List<TodoItem> {
+    fun getItem(): List<TodoItem> {
         return todoListRepository.getItem()
     }
 
