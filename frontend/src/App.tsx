@@ -1,7 +1,6 @@
 import './App.css';
 import React, {useEffect, useState} from "react";
 
-
 const App = () => {
 
     const [items, setItems] = useState<TodoItem[]>([]);
@@ -15,7 +14,6 @@ const App = () => {
             .then(() => setInitStartup(false))
             .catch(error => console.error('Error fetching items: ', error))
     }, []);
-
 
     if (initStartup) {
     }
@@ -74,7 +72,7 @@ const App = () => {
             }} onChange={event => {
                 setItem(event.target.value)
             }} id="demo" className="textbar" type="text" placeholder="Neuer Artikel eingeben" value={item}/>
-            <button onClick={createItem} className="btn">Hinzufügen</button>
+            <input type="button" onClick={createItem} className="btn" value="Hinzufügen"></input>
         </div>
     </>
 }

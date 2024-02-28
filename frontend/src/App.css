@@ -7,7 +7,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 1000ms alternate-reverse;
+    animation: App-logo-spin infinite 1700ms linear;
   }
 }
 
@@ -85,4 +85,13 @@ input[type=checkbox]:checked + label {
   font-size: 25px;
   margin-left: 10px;
   width: 150px;
+}
+
+::selection {
+  background: deepskyblue;
+}
+
+.img {
+  max-width: 20%;
+  max-height: 20%;
 }

@@ -1,15 +1,17 @@
 type TodoItem {
-    uuid: String,
+    uuid: String!,
     item: String!,
-    isDone: Boolean
+    isDone: Boolean!
 }
-
+type User {
+    todoItems: [TodoItem]
+}
 type Query {
     getItem: [TodoItem]
 }
 
 type Mutation {
-    createItem(item: String): TodoItem
-    deleteItem(uuid: String): TodoItem
-    putIsDone(uuid: String, isDone: Boolean): TodoItem
+    createItem(item: String!): TodoItem
+    deleteItem(uuid: String!): TodoItem
+    putIsDone(uuid: String!, isDone: Boolean!): TodoItem
 }
