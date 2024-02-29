@@ -78,8 +78,8 @@ const App = () => {
 }
 
 export interface TodoItem {
-    uuid: String,
-    item: String,
+    uuid: string,
+    item: string,
     isDone: boolean
 }
 

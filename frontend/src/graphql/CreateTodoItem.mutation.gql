@@ -1,0 +1,7 @@
+mutation createItem($item: String!) {
+    createItem(item: $item) {
+        isDone
+        item
+        uuid
+    }
+}

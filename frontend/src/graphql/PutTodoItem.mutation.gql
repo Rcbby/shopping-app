@@ -1,0 +1,6 @@
+mutation putItem($isDone: Boolean!, $uuid: String!) {
+    putIsDone(isDone: $isDone, uuid: $uuid) {
+        isDone
+        uuid
+    }
+}
