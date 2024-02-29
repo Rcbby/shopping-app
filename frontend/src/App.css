@@ -95,3 +95,8 @@ input[type=checkbox]:checked + label {
   max-width: 20%;
   max-height: 20%;
 }
+
+.div1 {
+  display: flex;
+  justify-content: space-between;
+}
