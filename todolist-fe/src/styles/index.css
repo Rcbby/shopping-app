@@ -1,0 +1,12 @@
+.header {
+    font-size: 35px;
+    color: white;
+    font-family: "Inter Semi Bold", sans-serif;
+}
+
+@media (min-width: 700px) {
+    .div {
+        width: 50%;
+        margin: auto;
+    }
+}

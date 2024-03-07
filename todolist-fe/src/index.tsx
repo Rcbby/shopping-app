@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import App from "./App";
-import './index.css'
+import './styles/index.css'
 import TodoItem from './TodoItem'
 import {ApolloClient, InMemoryCache, ApolloProvider, HttpLink} from '@apollo/client';
 
@@ -22,7 +22,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
     <>
-        <div className="center">
+        <div className="div">
         <h1 className="header">Einkaufsliste</h1>
         </div>
         <ApolloProvider client={client}>

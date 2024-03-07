@@ -1,4 +1,4 @@
-import './App.css';
+import './styles/App.css';
 import React, {useEffect, useState} from "react";
 
 const App = () => {
@@ -35,6 +35,8 @@ const App = () => {
             .catch(error => console.error(`there was an error: ${error}`))
     }
 
+
+
     const createItem = () => {
         const requestOptions = {
             method: 'POST',
@@ -65,14 +67,16 @@ const App = () => {
                 )
             })}
             <h1 className="headline">Neuer Artikel</h1>
-            <input onKeyDown={event => {
-                if (event.key == 'Enter') {
-                    createItem()
-                }
-            }} onChange={event => {
-                setItem(event.target.value)
-            }} id="demo" className="textbar" type="text" placeholder="Neuer Artikel eingeben" value={item}/>
-            <input type="button" onClick={createItem} className="btn" value="Hinzufügen"></input>
+            <div className="flex-between">
+                <input onKeyDown={event => {
+                    if (event.key == 'Enter') {
+                        createItem()
+                    }
+                }} onChange={event => {
+                    setItem(event.target.value)
+                }} id="demo" className="textbar" type="text" placeholder="Neuer Artikel eingeben" value={item}/>
+                <input type="button" onClick={createItem} className="btn" value="Hinzufügen"></input>
+            </div>
         </div>
     </>
 }
