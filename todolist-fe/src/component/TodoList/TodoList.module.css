@@ -1,0 +1,28 @@
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 15%;
+    grid-template-rows: 1fr 1fr;
+}
+
+.hr {
+    grid-column: 1 / span 2;
+}
+
+.deleteBtn {
+    cursor: pointer;
+    border: 1px solid red;
+    background-color: transparent;
+    color: red;
+    padding: 6px;
+    width: min-content;
+}
+
+.flexend {
+    justify-self: flex-end;
+}
+
+.checkbox {
+    width: clamp(7px, 2vw, 10px);
+    height: min-content;
+    margin-right: clamp(5px,2vw,10px);
+}

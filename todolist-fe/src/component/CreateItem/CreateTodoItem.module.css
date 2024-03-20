@@ -1,0 +1,29 @@
+.headline {
+    font-size: 20px;
+    grid-column: 1 / span 2;
+}
+
+.textbar {
+    padding: 5px;
+    font-family: "Comic Sans MS", cursive;
+    background-color: #282c34;
+    border: 0;
+    border-bottom: 1px solid white;
+    width: 30vw;
+    color: white;
+}
+
+.btn {
+    padding: 6px;
+    cursor: pointer;
+    border: 1px solid deepskyblue;
+    background-color: transparent;
+    color: deepskyblue;
+    margin-left: 5px;
+    width: min-content;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
