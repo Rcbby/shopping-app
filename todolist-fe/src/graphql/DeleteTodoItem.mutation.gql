@@ -1,5 +1,0 @@
-mutation deleteItem($uuid: String!) {
-    deleteItem(uuid: $uuid) {
-        uuid
-    }
-}

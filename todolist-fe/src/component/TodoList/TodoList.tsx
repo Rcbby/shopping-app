@@ -1,28 +1,24 @@
-import React from "react";
-import {useDeleteItemMutation, useGetItemQuery, usePutItemMutation} from "../../graphql/generated/graphql";
+import React, {Dispatch, SetStateAction} from "react";
 import style from './TodoList.module.css'
+import {TodoItem} from "../TodoItem/TodoItem";
 
 export const TodoList = (props: TodoItemAndNumber) => {
 
-    const [removeItem] = useDeleteItemMutation()
-    const [putItem] = usePutItemMutation()
-    const {refetch} = useGetItemQuery()
 
-    function changeIsDone(isDone: boolean, uuid: string) {
-        isDone = !isDone
-        putItem({variables: {uuid: uuid, isDone: isDone}}).then(() =>
-            refetch()
-        ).catch(e => {
-            alert(e)
-        })
+    function handleChange(isDone: boolean, uuid: string) {
+        fetch(`http://localhost:8080/todolist/${!isDone}/${uuid}`, {method: "PUT"})
+            .then(res => res.json())
+            .then(data => props.setState(props.items.map(item =>
+                item.uuid == data.uuid ? {...item, isDone: data.isDone} : item)))
+            .catch(error => console.error(`error: ${error}`))
     }
 
-    function deleteItem(uuid: string) {
-        removeItem({variables: {uuid: uuid}}).then(() =>
-            refetch()
-        ).catch(e => {
-            alert(e)
-        })
+
+    function handleDelete(uuid: string) {
+        fetch(`http://localhost:8080/todolist/${uuid}`, {method: 'DELETE'})
+            .then(res => res.json())
+            .then(data => props.setState(props.items.filter(item => item.uuid !== data.uuid)))
+            .catch(error => console.error(`error: ${error}`))
     }
 
     return (
@@ -30,12 +26,12 @@ export const TodoList = (props: TodoItemAndNumber) => {
             <div className={style.grid} key={props.index}>
                 <div className={style.todo}>
                     <input className={style.checkbox} type="checkbox"
-                           onClick={() => changeIsDone(props.isDone, props.uuid)}
+                           onClick={() => handleChange(props.isDone, props.uuid)}
                            id={props.uuid} checked={props.isDone}></input>
                     <label htmlFor={props.uuid}>{props.item}</label>
                 </div>
                 <div className={style.flexend}>
-                    <input className={style.deleteBtn} onClick={() => deleteItem(props.uuid)} type="button"
+                    <input className={style.deleteBtn} onClick={() => handleDelete(props.uuid)} type="button"
                            value="Löschen"></input>
                 </div>
                 <div className={style.hr}>
@@ -51,4 +47,6 @@ interface TodoItemAndNumber {
     isDone: boolean;
     uuid: string;
     index: number;
+    items: TodoItem[];
+    setState: Dispatch<SetStateAction<TodoItem[]>>;
 }

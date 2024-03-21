@@ -1,21 +1,24 @@
-import React, {useState} from "react";
-import {useCreateItemMutation, useGetItemQuery} from "../../graphql/generated/graphql";
+import React, {Dispatch, SetStateAction, useState} from "react";
 import style from './CreateTodoItem.module.css'
+import {TodoItem} from "../TodoItem/TodoItem";
 
-export const CreateTodoItem = () => {
-    const {refetch} = useGetItemQuery()
+export const CreateTodoItem = (props: CreateTodoItem) => {
     const [item, setItem] = useState('');
-    const [createItem] = useCreateItemMutation()
+
 
     function createTodoItem() {
-        if (item === "") {
-            console.log(item)
-        } else {
-            createItem({variables: {item: item}}).then(() =>
-                refetch()
-            ).catch(e => {
-                alert(e)
-            })
+        const requestOptions = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({item})
+        }
+
+        if (item !== "" && item !== null) {
+            fetch('http://localhost:8080/todolist', requestOptions)
+                .then(res => res.json())
+                .then(data => props.setState(() => [...props.items, data]))
+                .catch(error => console.error(`error: ${error}`))
+            setItem("");
         }
     }
 
@@ -35,9 +38,15 @@ export const CreateTodoItem = () => {
                        id="demo" type="text" placeholder="Neuer Artikel eingeben"
                        value={item}/>
                 <div>
-                    <input className={style.btn} type="button" onClick={createTodoItem} value="Hinzufügen"></input>
+                    <input className={style.btn} type="button" onClick={createTodoItem}
+                           value="Hinzufügen"></input>
                 </div>
             </div>
         </>
     )
+}
+
+interface CreateTodoItem {
+    items: TodoItem[];
+    setState: Dispatch<SetStateAction<TodoItem[]>>;
 }

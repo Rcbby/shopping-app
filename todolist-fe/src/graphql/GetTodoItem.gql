@@ -1,7 +1,0 @@
-query getItem {
-    getItem {
-        item
-        isDone
-        uuid
-    }
-}
